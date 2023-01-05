@@ -50,7 +50,9 @@ public class Window extends JFrame {
         JPanel eastRankingsPanel = new JPanel(new BorderLayout());
         panelContainer.add(eastRankingsPanel, "East Ranking");
 
-        JPanel playersRankingsPanel = new JPanel(new BorderLayout());
+        JPanel playersRankingsPanel = new JPanel();
+        PlayerStats playerStats = new PlayerStats();
+        playersRankingsPanel.add(playerStats.scroll);
         panelContainer.add(playersRankingsPanel, "Players Ranking");
 
         JPanel todayScoresPanel = new JPanel(new BorderLayout());
