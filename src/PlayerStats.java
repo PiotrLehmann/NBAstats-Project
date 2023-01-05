@@ -30,7 +30,7 @@ public class PlayerStats {
         WebDriver driver = new ChromeDriver();
         driver.get(url);
         Document document = Jsoup.parse(driver.getPageSource());
-        
+
         String[][] data = new String[50][6];
 
         try {
