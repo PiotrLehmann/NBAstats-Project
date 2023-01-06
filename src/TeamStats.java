@@ -3,6 +3,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -19,9 +21,7 @@ public class TeamStats {
 
         final String url = "https://www.nba.com/stats/teams/traditional";
 
-        ChromeOptions options = new ChromeOptions();
-        options.setHeadless(false);
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = new FirefoxDriver(new FirefoxOptions().addPreference("general.useragent.override","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36 OPR/60.0.3255.170").addArguments("--headless"));
         driver.get(url);
 
         String[][] data = new String[30][8];
