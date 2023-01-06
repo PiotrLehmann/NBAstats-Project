@@ -1,13 +1,10 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import java.util.List;
 
@@ -47,9 +44,7 @@ public class TeamStats {
         teamStatsTable.setPreferredScrollableViewportSize(new Dimension(400,400));
         teamStatsTable.setFillsViewportHeight(true);
         teamStatsTable.setAutoCreateRowSorter(true);
-
         teamStatsTable.getColumnModel().getColumn(0).setPreferredWidth(150);
-
         scroll2 = new JScrollPane(teamStatsTable);
     }
 

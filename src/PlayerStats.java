@@ -1,11 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.Dimension;
@@ -44,10 +41,10 @@ public class PlayerStats {
 
         Object[] columns = {"Name", "Team", "Points", "FG%", "Assists", "Rebounds"};
         this.playerStatsTable = new JTable(data, columns);
-        playerStatsTable.setPreferredScrollableViewportSize(new Dimension(600,400));
+        playerStatsTable.setPreferredScrollableViewportSize(new Dimension(700,500));
         playerStatsTable.setFillsViewportHeight(true);
         playerStatsTable.setAutoCreateRowSorter(true);
-
+        playerStatsTable.getColumnModel().getColumn(0).setPreferredWidth(150);
         scroll = new JScrollPane(playerStatsTable);
     }
 

@@ -1,7 +1,9 @@
 import org.apache.log4j.Logger;
-
 import javax.swing.*;
-import java.awt.*;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

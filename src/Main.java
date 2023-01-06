@@ -1,7 +1,5 @@
-// import for Log4j
 import org.apache.log4j.Logger;
-
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 
 public class Main {
 
