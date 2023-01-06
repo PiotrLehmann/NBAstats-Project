@@ -43,13 +43,13 @@ public class Window extends JFrame {
         JLabel logoLabel = new JLabel(logo);
         homePanel.add(logoLabel, BorderLayout.CENTER);
 
-        // Western Conference Ranking Panel
-        JPanel westRankingsPanel = new JPanel(new BorderLayout());
-        panelContainer.add(westRankingsPanel, "West Ranking");
+        // Teams Statistics Panel
+        JPanel teamsRankingPanel = new JPanel(new BorderLayout());
+        TeamStats teamStats = new TeamStats();
+        teamsRankingPanel.add(teamStats.scroll2);
+        panelContainer.add(teamsRankingPanel, "Teams Ranking");
 
-        JPanel eastRankingsPanel = new JPanel(new BorderLayout());
-        panelContainer.add(eastRankingsPanel, "East Ranking");
-
+        // Players statistics Panel
         JPanel playersRankingsPanel = new JPanel();
         PlayerStats playerStats = new PlayerStats();
         playersRankingsPanel.add(playerStats.scroll);
@@ -71,14 +71,12 @@ public class Window extends JFrame {
 
         JMenuItem backHome = new JMenuItem("Back Home");
         JMenuItem exit = new JMenuItem("Exit");
-        JMenuItem westRankings = new JMenuItem("Western Conference");
-        JMenuItem eastRankings = new JMenuItem("Eastern Conference");
+        JMenuItem teamsRanking = new JMenuItem("Teams Ranking");
         JMenuItem playersRanking = new JMenuItem("Players Ranking");
         JMenuItem todayScores = new JMenuItem("Today Scores");
         JMenuItem highestScores = new JMenuItem("Highest Scores");
 
-        rankingsMenu.add(westRankings);
-        rankingsMenu.add(eastRankings);
+        rankingsMenu.add(teamsRanking);
         rankingsMenu.add(playersRanking);
 
         scoresMenu.add(todayScores);
@@ -108,19 +106,11 @@ public class Window extends JFrame {
             }
         });
 
-        westRankings.addActionListener(new ActionListener() {
+        teamsRanking.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cl.show(panelContainer, "West Ranking");
-                logger.trace("Clicked Western Ranking - currently on Western Ranking");
-            }
-        });
-
-        eastRankings.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cl.show(panelContainer, "East Ranking");
-                logger.trace("Clicked Eastern Ranking - currently on Eastern Ranking");
+                cl.show(panelContainer, "Teams Ranking");
+                logger.trace("Clicked Teams Ranking - currently on Teams Ranking");
             }
         });
 
