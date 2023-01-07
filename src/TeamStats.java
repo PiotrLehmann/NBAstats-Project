@@ -46,6 +46,8 @@ public class TeamStats {
         teamStatsTable.setAutoCreateRowSorter(true);
         teamStatsTable.getColumnModel().getColumn(0).setPreferredWidth(150);
         scroll2 = new JScrollPane(teamStatsTable);
+
+        driver.quit();
     }
 
 }

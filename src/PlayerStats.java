@@ -5,6 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 import java.awt.Dimension;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class PlayerStats {
         WebDriver driver = new FirefoxDriver(new FirefoxOptions().addPreference("general.useragent.override","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36 OPR/60.0.3255.170").addArguments("--headless"));
         driver.get(url);
 
-        String[][] data = new String[50][6];
+        Object[][] data = new Object[50][6];
 
         WebElement table = driver.findElement((By.xpath("//table[contains(@class, 'Crom_table__p1iZz')]//tbody")));
 
@@ -32,7 +33,8 @@ public class PlayerStats {
             List<WebElement> cols = row.findElements(By.xpath("td"));
             for (WebElement col : cols) {
                 switch (numberOfColumn) {
-                    case 1, 2, 3, 4, 5, 6 -> data[numberOfRow][numberOfColumn - 1] = col.getText();
+                    case 1, 2 -> data[numberOfRow][numberOfColumn - 1] = col.getText();
+                    case 3, 4, 5, 6 -> data[numberOfRow][numberOfColumn - 1] = Double.parseDouble(col.getText());
                 }
                 numberOfColumn++;
             }
@@ -40,12 +42,25 @@ public class PlayerStats {
         }
 
         Object[] columns = {"Name", "Team", "Points", "FG%", "Assists", "Rebounds"};
-        this.playerStatsTable = new JTable(data, columns);
+        DefaultTableModel model = new DefaultTableModel(data, columns) {
+            @Override
+            public Class getColumnClass(int column) {
+                return switch(column) {
+                    case 0,1 -> String.class;
+                    case 2,3,4,5 -> Double.class;
+                    default -> throw new IllegalStateException("Unexpected value: " + column);
+                };
+            }
+        };
+
+        this.playerStatsTable = new JTable(model);
         playerStatsTable.setPreferredScrollableViewportSize(new Dimension(700,500));
         playerStatsTable.setFillsViewportHeight(true);
         playerStatsTable.setAutoCreateRowSorter(true);
         playerStatsTable.getColumnModel().getColumn(0).setPreferredWidth(150);
         scroll = new JScrollPane(playerStatsTable);
+
+        driver.quit();
     }
 
 }
