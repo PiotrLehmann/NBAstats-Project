@@ -44,18 +44,23 @@ public class Window extends JFrame {
         panelContainer.add(homePanel, "Home");
         JLabel logoLabel = new JLabel(logo);
         homePanel.add(logoLabel, BorderLayout.CENTER);
+        logger.info("Home Panel - successfully created");
 
         // Teams Statistics Panel
         JPanel teamsRankingPanel = new JPanel(new BorderLayout());
         TeamStats teamStats = new TeamStats();
-        teamsRankingPanel.add(teamStats.scroll2);
+        teamsRankingPanel.add(teamStats.scroll2, BorderLayout.CENTER);
         panelContainer.add(teamsRankingPanel, "Teams Ranking");
+        logger.info("Teams Ranking Panel - successfully created");
 
         // Players statistics Panel
-        JPanel playersRankingsPanel = new JPanel();
+        JPanel playersRankingsPanel = new JPanel(new BorderLayout());
         PlayerStats playerStats = new PlayerStats();
-        playersRankingsPanel.add(playerStats.scroll);
+        logger.warn("A problem with WebDriver happened");
+
+        playersRankingsPanel.add(playerStats.scroll, BorderLayout.CENTER);
         panelContainer.add(playersRankingsPanel, "Players Ranking");
+        logger.info("Players Ranking Panel - successfully created");
 
         JPanel todayScoresPanel = new JPanel(new BorderLayout());
         panelContainer.add(todayScoresPanel, "Today Scores");

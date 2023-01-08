@@ -5,7 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import java.awt.Dimension;
+import java.awt.*;
 import java.util.List;
 
 
@@ -41,10 +41,13 @@ public class TeamStats {
 
         Object[] columns = {"Team", "GP", "W", "L", "WIN%", "MIN", "PTS", "FGM"};
         this.teamStatsTable = new JTable(data, columns);
-        teamStatsTable.setPreferredScrollableViewportSize(new Dimension(400,400));
+        teamStatsTable.setPreferredScrollableViewportSize(new Dimension(500,400));
         teamStatsTable.setFillsViewportHeight(true);
         teamStatsTable.setAutoCreateRowSorter(true);
         teamStatsTable.getColumnModel().getColumn(0).setPreferredWidth(150);
+        teamStatsTable.getTableHeader().setOpaque(false);
+        teamStatsTable.getTableHeader().setBackground(Color.BLACK);
+        teamStatsTable.getTableHeader().setForeground(Color.WHITE);
         scroll2 = new JScrollPane(teamStatsTable);
 
         driver.quit();

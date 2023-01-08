@@ -1,3 +1,4 @@
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,13 +7,14 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import java.awt.Dimension;
+import java.awt.*;
 import java.util.List;
 
 public class PlayerStats {
 
     public JTable playerStatsTable;
     public JScrollPane scroll;
+    private static final Logger logger = Logger.getLogger(PlayerStats.class);
 
     public PlayerStats() {
 
@@ -54,10 +56,13 @@ public class PlayerStats {
         };
 
         this.playerStatsTable = new JTable(model);
-        playerStatsTable.setPreferredScrollableViewportSize(new Dimension(700,500));
+        playerStatsTable.setPreferredScrollableViewportSize(new Dimension(500,400));
         playerStatsTable.setFillsViewportHeight(true);
         playerStatsTable.setAutoCreateRowSorter(true);
-        playerStatsTable.getColumnModel().getColumn(0).setPreferredWidth(150);
+        playerStatsTable.getColumnModel().getColumn(0).setPreferredWidth(120);
+        playerStatsTable.getTableHeader().setOpaque(false);
+        playerStatsTable.getTableHeader().setBackground(Color.BLACK);
+        playerStatsTable.getTableHeader().setForeground(Color.WHITE);
         scroll = new JScrollPane(playerStatsTable);
 
         driver.quit();
