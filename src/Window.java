@@ -1,9 +1,7 @@
 import org.apache.log4j.Logger;
 import javax.swing.*;
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.BorderLayout;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,10 +38,11 @@ public class Window extends JFrame {
         panelContainer.setLayout(cl);
 
         // Front Panel with LOGO
-        JPanel homePanel = new JPanel(new BorderLayout());
+        JPanel homePanel = new JPanel(new GridLayout(1,2));
+        HomeScreen homeScreen = new HomeScreen();
+        homePanel.add(homeScreen.logoLabel);
+        homePanel.add(homeScreen.infoPanel);
         panelContainer.add(homePanel, "Home");
-        JLabel logoLabel = new JLabel(logo);
-        homePanel.add(logoLabel, BorderLayout.CENTER);
         logger.info("Home Panel - successfully created");
 
         // Teams Statistics Panel
@@ -56,8 +55,6 @@ public class Window extends JFrame {
         // Players statistics Panel
         JPanel playersRankingsPanel = new JPanel(new BorderLayout());
         PlayerStats playerStats = new PlayerStats();
-        logger.warn("A problem with WebDriver happened");
-
         playersRankingsPanel.add(playerStats.scroll, BorderLayout.CENTER);
         panelContainer.add(playersRankingsPanel, "Players Ranking");
         logger.info("Players Ranking Panel - successfully created");
