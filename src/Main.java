@@ -7,6 +7,20 @@ public class Main {
 
     public static void main(String[] args) {
 
+        try {
+            if (!InternetAvailabilityChecker.isInternetAvailable()) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        new NoInternetWindow();
+                    }
+                });
+            }
+        } catch (Exception e) {
+            logger.debug("Exception thrown during checking of the internet availability");
+        }
+
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

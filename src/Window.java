@@ -17,8 +17,8 @@ public class Window extends JFrame {
     public Window() {
 
         // local variables
-        int screenHeight = (int) screenSize.getHeight(); // down-casting is safe here
-        int screenWidth = (int) screenSize.getWidth(); // same here
+        int screenHeight = (int) screenSize.getHeight();
+        int screenWidth = (int) screenSize.getWidth();
         int windowHeight = 600;
         int windowWidth = 800;
         logger.info("Screen resolution & window size set");
