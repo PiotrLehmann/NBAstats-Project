@@ -15,9 +15,11 @@ public class Main {
                         new NoInternetWindow();
                     }
                 });
+                Thread.sleep(7000);
+                System.exit(0);
             }
         } catch (Exception e) {
-            logger.debug("Exception thrown during checking of the internet availability");
+            logger.debug("Exception thrown while checking the internet availability");
         }
 
 
