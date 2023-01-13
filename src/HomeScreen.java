@@ -11,18 +11,12 @@ import java.util.Calendar;
 
 public class HomeScreen {
 
-    public JPanel infoPanel;
     public JLabel logoLabel;
-    public JLabel daysLeftToEndOfSeasonLabel;
-    public JLabel dateLabel;
-    public JLabel welcomeLabel;
-    public JLabel descriptionLabel;
+    public JLabel textLabel;
     public int today;
     public int endOfSeason;
     public SimpleDateFormat dateFormat;
     public String date;
-    private static final Logger logger = Logger.getLogger(HomeScreen.class);
-    public Font myFont = new Font("Arial", Font.BOLD, 30);
 
     public HomeScreen() {
 
@@ -30,43 +24,29 @@ public class HomeScreen {
         ImageIcon logo = new ImageIcon("images/LOGO500GIT.png");
         logoLabel = new JLabel(logo);
 
-        // Info for the right side of HomeScreen
-        welcomeLabel = new JLabel();
-        welcomeLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        welcomeLabel.setFont(myFont);
-        welcomeLabel.setText("""
-                <html>WELCOME TO THE<br>
-                NEW NBA-STATS APP</br></html>""");
-
-        descriptionLabel = new JLabel();
-        descriptionLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-        descriptionLabel.setText("""
-                <html>Check your favourite team record<br>
-                look at the best players stats</br><br>
-                follow their ranking and more!</br></html>""");
-
         dateFormat = new SimpleDateFormat("E dd.MM.yy");
-        dateLabel = new JLabel();
-        dateLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        dateLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         date = dateFormat.format(Calendar.getInstance().getTime());
-        dateLabel.setText("It's " + date);
 
         today = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
         endOfSeason = 169;
 
-        daysLeftToEndOfSeasonLabel = new JLabel();
-        daysLeftToEndOfSeasonLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        daysLeftToEndOfSeasonLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-        daysLeftToEndOfSeasonLabel.setText("Season ends in: " + (endOfSeason - today) + " days");
-
-        infoPanel = new JPanel(new GridLayout(0,1));
-        infoPanel.setPreferredSize(new Dimension(300,100));
-        infoPanel.add(welcomeLabel);
-        infoPanel.add(descriptionLabel);
-        infoPanel.add(dateLabel);
-        infoPanel.add(daysLeftToEndOfSeasonLabel);
+        textLabel = new JLabel(
+                "<html><span style='font-family:Arial;font-size:25px;font-weight:bold'>"+"""
+                WELCOME TO THE
+                <br>NEW NBA-STATS APP</br>"""
+                + "</span>"
+                + "<span style='font-family:Arial;font-size:13px;font-weight:normal'>" + """
+                <br>Check your favourite team record</br>
+                <br>look at the best players stats</br>
+                <br>follow their ranking and more!</br>"""
+                + "</span>"
+                + "<span style='font-family:Arial;font-size:13px;font-weight:normal'>"
+                + "<br>"+"Today is: " + date + "</br>"
+                + "</span>"
+                + "<span style='font-family:Arial;font-size:13px;font-weight:normal'>"
+                + "<br>"+"Season ends in: "
+                + "<span style='color:orange'>" + (endOfSeason - today) + "days" + "<span/>" + "</br>"
+                + "</span></html>");
 
     }
 }

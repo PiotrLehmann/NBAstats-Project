@@ -29,7 +29,6 @@ public class Window extends JFrame {
         // Adjusting window appearance
         this.setTitle("NBA Stats");
         this.setIconImage(logo.getImage());
-
         // Creating a CardLayout
         CardLayout cl = new CardLayout();
 
@@ -41,7 +40,7 @@ public class Window extends JFrame {
         JPanel homePanel = new JPanel(new GridLayout(1,2));
         HomeScreen homeScreen = new HomeScreen();
         homePanel.add(homeScreen.logoLabel);
-        homePanel.add(homeScreen.infoPanel);
+        homePanel.add(homeScreen.textLabel);
         panelContainer.add(homePanel, "Home");
         logger.info("Home Panel - successfully created");
 

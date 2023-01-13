@@ -7,7 +7,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Color;
 import java.util.List;
 
 public class PlayerStats {
