@@ -25,20 +25,44 @@ public class TeamStats {
             driver = new FirefoxDriver(new FirefoxOptions().addPreference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36 OPR/60.0.3255.170").addArguments("--headless"));
             driver.get(url);
         } catch (Exception e) {
-            logger.error("Error occurred while starting driver, because NBA.com is reloading");
+            logger.error("Error occurred while starting driver, because NBA.com is reloading data");
             logger.info("Please wait and restart application");
+            if (driver != null) {
+                driver.quit();
+            }
             System.exit(1);
         }
 
         String[][] data = new String[30][8];
 
-        WebElement table = driver.findElement((By.xpath("//table[contains(@class, 'Crom_table__p1iZz')]//tbody")));
-        List<WebElement> rows = table.findElements(By.tagName("tr"));
+        List<WebElement> rows = null;
+        try {
+            WebElement table = driver.findElement((By.xpath("//table[contains(@class, 'Crom_table__p1iZz')]//tbody")));
+            rows = table.findElements(By.tagName("tr"));
+        } catch (Exception e) {
+            logger.error("Error occurred while parsing Xpaths from rows, because NBA.com is reloading data");
+            logger.info("Please wait and restart application");
+            driver.quit();
+            System.exit(1);
+        }
 
         int numberOfRow = 0;
-        for (WebElement row: rows) {
+
+        for (WebElement row : rows) {
+
             int numberOfColumn = 0;
-            List<WebElement> cols = row.findElements(By.xpath("td"));
+            List<WebElement> cols = null;
+
+            try {
+                cols = row.findElements(By.xpath("td"));
+            } catch (Exception e) {
+                logger.error("Error occurred while parsing Xpaths from rows, because NBA.com is reloading data");
+                logger.info("Please wait and restart application");
+                driver.quit();
+                System.exit(1);
+            }
+
+            assert cols != null;
             for (WebElement col : cols) {
                 switch (numberOfColumn) {
                     case 1, 2, 3, 4, 5, 6, 7, 8 -> data[numberOfRow][numberOfColumn - 1] = col.getText();
@@ -50,7 +74,7 @@ public class TeamStats {
 
         Object[] columns = {"Team", "GP", "W", "L", "WIN%", "MIN", "PTS", "FGM"};
         this.teamStatsTable = new JTable(data, columns);
-        teamStatsTable.setPreferredScrollableViewportSize(new Dimension(500,400));
+        teamStatsTable.setPreferredScrollableViewportSize(new Dimension(500, 400));
         teamStatsTable.setFillsViewportHeight(true);
         teamStatsTable.setAutoCreateRowSorter(true);
         teamStatsTable.getColumnModel().getColumn(0).setPreferredWidth(150);
