@@ -21,19 +21,48 @@ public class PlayerStats {
 
         final String url = "https://www.nba.com/stats/players/traditional";
 
-        WebDriver driver = new FirefoxDriver(new FirefoxOptions().addPreference("general.useragent.override","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36 OPR/60.0.3255.170").addArguments("--headless"));
-        driver.get(url);
+        WebDriver driver = null;
+        try {
+            driver = new FirefoxDriver(new FirefoxOptions().addPreference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36 OPR/60.0.3255.170").addArguments("--headless"));
+            driver.get(url);
+        } catch (Exception e) {
+            logger.error("Error occurred while starting driver, because NBA.com is reloading data");
+            logger.info("Please wait and restart application");
+            if (driver != null) {
+                driver.quit();
+            }
+            System.exit(1);
+        }
 
         Object[][] data = new Object[50][6];
 
-        WebElement table = driver.findElement((By.xpath("//table[contains(@class, 'Crom_table__p1iZz')]//tbody")));
-
-        List<WebElement> rows = table.findElements(By.tagName("tr"));
+        List<WebElement> rows = null;
+        try {
+            WebElement table = driver.findElement((By.xpath("//table[contains(@class, 'Crom_table__p1iZz')]//tbody")));
+            rows = table.findElements(By.tagName("tr"));
+        } catch (Exception e) {
+            logger.error("Error occurred while parsing Xpaths from rows, because NBA.com is reloading data");
+            logger.info("Please wait and restart application");
+            driver.quit();
+            System.exit(1);
+        }
 
         int numberOfRow = 0;
-        for (WebElement row: rows) {
+        for (WebElement row : rows) {
+
             int numberOfColumn = 0;
-            List<WebElement> cols = row.findElements(By.xpath("td"));
+            List<WebElement> cols = null;
+
+            try {
+                cols = row.findElements(By.xpath("td"));
+            } catch (Exception e) {
+                logger.error("Error occurred while parsing Xpaths from columns, because NBA.com is reloading data");
+                logger.info("Please wait and restart application");
+                driver.quit();
+                System.exit(1);
+            }
+
+            assert cols != null;
             for (WebElement col : cols) {
                 switch (numberOfColumn) {
                     case 1, 2 -> data[numberOfRow][numberOfColumn - 1] = col.getText();
@@ -48,16 +77,16 @@ public class PlayerStats {
         DefaultTableModel model = new DefaultTableModel(data, columns) {
             @Override
             public Class getColumnClass(int column) {
-                return switch(column) {
-                    case 0,1 -> String.class;
-                    case 2,3,4,5 -> Double.class;
+                return switch (column) {
+                    case 0, 1 -> String.class;
+                    case 2, 3, 4, 5 -> Double.class;
                     default -> throw new IllegalStateException("Unexpected value: " + column);
                 };
             }
         };
 
         this.playerStatsTable = new JTable(model);
-        playerStatsTable.setPreferredScrollableViewportSize(new Dimension(500,400));
+        playerStatsTable.setPreferredScrollableViewportSize(new Dimension(500, 400));
         playerStatsTable.setFillsViewportHeight(true);
         playerStatsTable.setAutoCreateRowSorter(true);
         playerStatsTable.getColumnModel().getColumn(0).setPreferredWidth(120);

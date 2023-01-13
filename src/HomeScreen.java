@@ -45,7 +45,7 @@ public class HomeScreen {
                 + "</span>"
                 + "<span style='font-family:Arial;font-size:13px;font-weight:normal'>"
                 + "<br>"+"Season ends in: "
-                + "<span style='color:orange'>" + (endOfSeason - today) + "days" + "<span/>" + "</br>"
+                + "<span style='color:orange'>" + (endOfSeason - today) + " days" + "<span/>" + "</br>"
                 + "</span></html>");
 
     }

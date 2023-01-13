@@ -1,3 +1,4 @@
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,13 +14,21 @@ public class TeamStats {
 
     public JTable teamStatsTable;
     public JScrollPane scroll2;
+    private static final Logger logger = Logger.getLogger(TeamStats.class);
 
     public TeamStats() {
 
         final String url = "https://www.nba.com/stats/teams/traditional";
 
-        WebDriver driver = new FirefoxDriver(new FirefoxOptions().addPreference("general.useragent.override","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36 OPR/60.0.3255.170").addArguments("--headless"));
-        driver.get(url);
+        WebDriver driver = null;
+        try {
+            driver = new FirefoxDriver(new FirefoxOptions().addPreference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36 OPR/60.0.3255.170").addArguments("--headless"));
+            driver.get(url);
+        } catch (Exception e) {
+            logger.error("Error occurred while starting driver, because NBA.com is reloading");
+            logger.info("Please wait and restart application");
+            System.exit(1);
+        }
 
         String[][] data = new String[30][8];
 
