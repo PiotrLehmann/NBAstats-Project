@@ -1,6 +1,6 @@
 import org.apache.log4j.Logger;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,7 +61,14 @@ public class Window extends JFrame {
         JPanel todayScoresPanel = new JPanel(new BorderLayout());
         panelContainer.add(todayScoresPanel, "Today Scores");
 
-        JPanel highestScoresPanel = new JPanel(new BorderLayout());
+        HighestScoresPanel highestScoresPanel = new HighestScoresPanel();
+        HighestScoresData highestScoresData = new HighestScoresData();
+        highestScoresPanel.addHistogramColumn(highestScoresData.data[4][0], Integer.parseInt(highestScoresData.data[4][1]), Color.DARK_GRAY);
+        highestScoresPanel.addHistogramColumn(highestScoresData.data[3][0], Integer.parseInt(highestScoresData.data[3][1]), Color.RED);
+        highestScoresPanel.addHistogramColumn(highestScoresData.data[2][0], Integer.parseInt(highestScoresData.data[2][1]), Color.ORANGE);
+        highestScoresPanel.addHistogramColumn(highestScoresData.data[1][0], Integer.parseInt(highestScoresData.data[1][1]), Color.YELLOW);
+        highestScoresPanel.addHistogramColumn(highestScoresData.data[0][0], Integer.parseInt(highestScoresData.data[0][1]), Color.GREEN);
+        highestScoresPanel.layoutHistogram();
         panelContainer.add(highestScoresPanel, "Highest Scores");
 
         cl.show(panelContainer, "Home");
@@ -77,7 +84,7 @@ public class Window extends JFrame {
         JMenuItem teamsRanking = new JMenuItem("Teams Ranking");
         JMenuItem playersRanking = new JMenuItem("Players Ranking");
         JMenuItem todayScores = new JMenuItem("Today Scores");
-        JMenuItem highestScores = new JMenuItem("Highest Scores");
+        JMenuItem highestScores = new JMenuItem("Highest All Time Scores");
 
         rankingsMenu.add(teamsRanking);
         rankingsMenu.add(playersRanking);
@@ -136,7 +143,8 @@ public class Window extends JFrame {
         highestScores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cl.show(panelContainer, "Clicked Highest Scores - currently on Highest Scores");
+                cl.show(panelContainer, "Highest Scores");
+                logger.trace("Clicked Today Scores - currently on Highest Scores");
             }
         });
 
