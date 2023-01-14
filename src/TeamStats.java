@@ -4,8 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
@@ -73,7 +75,17 @@ public class TeamStats {
         }
 
         Object[] columns = {"Team", "GP", "W", "L", "WIN%", "MIN", "PTS", "FGM"};
-        this.teamStatsTable = new JTable(data, columns);
+        DefaultTableModel model = new DefaultTableModel(data, columns) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment((JLabel.CENTER));
+
+        this.teamStatsTable = new JTable(model);
         teamStatsTable.setPreferredScrollableViewportSize(new Dimension(500, 400));
         teamStatsTable.setFillsViewportHeight(true);
         teamStatsTable.setAutoCreateRowSorter(true);
@@ -81,6 +93,7 @@ public class TeamStats {
         teamStatsTable.getTableHeader().setOpaque(false);
         teamStatsTable.getTableHeader().setBackground(Color.BLACK);
         teamStatsTable.getTableHeader().setForeground(Color.WHITE);
+        teamStatsTable.setDefaultRenderer(String.class, centerRenderer);
         scroll2 = new JScrollPane(teamStatsTable);
 
         driver.quit();

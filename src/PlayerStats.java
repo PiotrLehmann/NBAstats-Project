@@ -4,8 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Dimension;
 import java.awt.Color;
@@ -76,6 +77,10 @@ public class PlayerStats {
         Object[] columns = {"Name", "Team", "Points", "FG%", "Assists", "Rebounds"};
         DefaultTableModel model = new DefaultTableModel(data, columns) {
             @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            @Override
             public Class getColumnClass(int column) {
                 return switch (column) {
                     case 0, 1 -> String.class;
@@ -85,6 +90,9 @@ public class PlayerStats {
             }
         };
 
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment((JLabel.CENTER));
+
         this.playerStatsTable = new JTable(model);
         playerStatsTable.setPreferredScrollableViewportSize(new Dimension(500, 400));
         playerStatsTable.setFillsViewportHeight(true);
@@ -93,6 +101,8 @@ public class PlayerStats {
         playerStatsTable.getTableHeader().setOpaque(false);
         playerStatsTable.getTableHeader().setBackground(Color.BLACK);
         playerStatsTable.getTableHeader().setForeground(Color.WHITE);
+        playerStatsTable.setDefaultRenderer(String.class, centerRenderer);
+        playerStatsTable.setDefaultRenderer(Double.class, centerRenderer);
         scroll = new JScrollPane(playerStatsTable);
 
         driver.quit();

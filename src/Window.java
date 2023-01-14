@@ -59,6 +59,8 @@ public class Window extends JFrame {
         logger.info("Players Ranking Panel - successfully created");
 
         JPanel todayScoresPanel = new JPanel(new BorderLayout());
+        TodayScores todayScores = new TodayScores();
+        todayScoresPanel.add(todayScores.scroll, BorderLayout.CENTER);
         panelContainer.add(todayScoresPanel, "Today Scores");
 
         HighestScoresPanel highestScoresPanel = new HighestScoresPanel();
@@ -79,28 +81,28 @@ public class Window extends JFrame {
         JMenu rankingsMenu = new JMenu("Rankings");
         JMenu scoresMenu = new JMenu("Scores");
 
-        JMenuItem backHome = new JMenuItem("Back Home");
-        JMenuItem exit = new JMenuItem("Exit");
-        JMenuItem teamsRanking = new JMenuItem("Teams Ranking");
-        JMenuItem playersRanking = new JMenuItem("Players Ranking");
-        JMenuItem todayScores = new JMenuItem("Today Scores");
-        JMenuItem highestScores = new JMenuItem("Highest All Time Scores");
+        JMenuItem backHomeItem = new JMenuItem("Back Home");
+        JMenuItem exitItem = new JMenuItem("Exit");
+        JMenuItem teamsRankingItem = new JMenuItem("Teams Ranking");
+        JMenuItem playersRankingItem = new JMenuItem("Players Ranking");
+        JMenuItem todayScoresItem = new JMenuItem("Today Scores");
+        JMenuItem highestScoresItem = new JMenuItem("Highest All Time Scores");
 
-        rankingsMenu.add(teamsRanking);
-        rankingsMenu.add(playersRanking);
+        rankingsMenu.add(teamsRankingItem);
+        rankingsMenu.add(playersRankingItem);
 
-        scoresMenu.add(todayScores);
-        scoresMenu.add(highestScores);
+        scoresMenu.add(todayScoresItem);
+        scoresMenu.add(highestScoresItem);
 
-        home.add(backHome);
-        home.add(exit);
+        home.add(backHomeItem);
+        home.add(exitItem);
 
         menuBar.add(home);
         menuBar.add(rankingsMenu);
         menuBar.add(scoresMenu);
 
         // action listeners to all menu items
-        backHome.addActionListener(new ActionListener() {
+        backHomeItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelContainer, "Home");
@@ -108,7 +110,7 @@ public class Window extends JFrame {
             }
         });
 
-        exit.addActionListener(new ActionListener() {
+        exitItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 logger.warn("Initially closed application");
@@ -116,7 +118,7 @@ public class Window extends JFrame {
             }
         });
 
-        teamsRanking.addActionListener(new ActionListener() {
+        teamsRankingItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelContainer, "Teams Ranking");
@@ -124,7 +126,7 @@ public class Window extends JFrame {
             }
         });
 
-        playersRanking.addActionListener(new ActionListener() {
+        playersRankingItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelContainer, "Players Ranking");
@@ -132,7 +134,7 @@ public class Window extends JFrame {
             }
         });
 
-        todayScores.addActionListener(new ActionListener() {
+        todayScoresItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelContainer, "Today Scores");
@@ -140,7 +142,7 @@ public class Window extends JFrame {
             }
         });
 
-        highestScores.addActionListener(new ActionListener() {
+        highestScoresItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelContainer, "Highest Scores");

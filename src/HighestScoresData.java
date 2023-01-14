@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import java.util.List;
 
+
 public class HighestScoresData {
 
     private static final Logger logger = Logger.getLogger(PlayerStats.class);
