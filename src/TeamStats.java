@@ -80,6 +80,14 @@ public class TeamStats {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
+            @Override
+            public Class getColumnClass(int column) {
+                return switch (column) {
+                    case 0 -> String.class;
+                    case 1, 2, 3, 4, 5, 6, 7 -> Double.class;
+                    default -> throw new IllegalStateException("Unexpected value: " + column);
+                };
+            }
         };
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -94,6 +102,7 @@ public class TeamStats {
         teamStatsTable.getTableHeader().setBackground(Color.BLACK);
         teamStatsTable.getTableHeader().setForeground(Color.WHITE);
         teamStatsTable.setDefaultRenderer(String.class, centerRenderer);
+        teamStatsTable.setDefaultRenderer(Double.class, centerRenderer);
         scroll2 = new JScrollPane(teamStatsTable);
 
         driver.quit();
