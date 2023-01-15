@@ -15,7 +15,7 @@ public class HomeScreen {
     public String date;
 
     public HomeScreen() {
-        
+
         ImageIcon logo = new ImageIcon("images/LOGO500GIT.png");
         logoLabel = new JLabel(logo);
 
