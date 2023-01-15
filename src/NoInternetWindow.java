@@ -7,9 +7,21 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.BorderLayout;
 
+
+/**
+ * NoInternetWindow class behaves like JFrame and is responsible
+ * for displaying NoInternetWindow in Main class
+ */
 public class NoInternetWindow extends JFrame {
 
+    /**
+     * gets the screen size of users screen
+     */
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    /**
+     * logger for NoInternetWindow class
+     */
     private static final Logger logger = Logger.getLogger(NoInternetWindow.class);
 
     public NoInternetWindow() {

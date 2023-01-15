@@ -7,7 +7,10 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import java.util.List;
 
 
-
+/**
+ * HighestScoresData class is responsible for creating two-dimensional
+ * table of data parsed from NBA website. This data is used in HighestScoresPanel later
+ */
 public class HighestScoresData {
 
     private static final Logger logger = Logger.getLogger(PlayerStats.class);

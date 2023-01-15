@@ -4,14 +4,41 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-
+/**
+ * HomeScreen class is responsible for creating HomeScreen,
+ * displaying today date with day name, number of days to end of
+ * an NBA season and picture of Kyrie Irving as logo
+ */
 public class HomeScreen {
 
+    /**
+     * contains logo Image
+     */
     public JLabel logoLabel;
+
+    /**
+     * contains all text displayed on HomeScreen
+     */
     public JLabel textLabel;
+
+    /**
+     * number of days from 1970 till today in USA
+     */
     public int today;
+
+    /**
+     * number of days from 1970 till NBA season end
+     */
     public int endOfSeason;
+
+    /**
+     * format in which date is displayed
+     */
     public SimpleDateFormat dateFormat;
+
+    /**
+     * contains unformatted date
+     */
     public String date;
 
     public HomeScreen() {

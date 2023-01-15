@@ -13,11 +13,22 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.util.List;
 
-
+/**
+ * TeamStats class is responsible for creating TeamStatsPanel,
+ * connecting to the NBA website and parsing data from it to table
+ */
 public class TeamStats {
 
+    /**
+     * table of team stats
+     */
     public JTable teamStatsTable;
+
     public JScrollPane scroll2;
+
+    /**
+     * logger for TeamStats class
+     */
     private static final Logger logger = Logger.getLogger(TeamStats.class);
 
     public TeamStats() {

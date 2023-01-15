@@ -18,11 +18,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+/**
+ * TodayScores class is responsible for creating TodayScoresPanel,
+ * connecting to the espn website and parsing data from it
+ */
 public class TodayScores {
 
+    /**
+     * table of today scores in USA
+     */
     JTable todayScoresTable;
+
     JScrollPane scroll;
+
+    /**
+     * logger for TodayScores class
+     */
     private static final Logger logger = Logger.getLogger(TodayScores.class);
 
     public TodayScores() {
@@ -130,6 +141,11 @@ public class TodayScores {
         driver.quit();
     }
 
+    /**
+     * method which parses and formats yesterday date in Poland to get today
+     * scores from the USA by using it to create link to the website
+     * @return returns yesterday date in good format
+     */
     private static String findYesterdayFormattedDate() {
         LocalDate today = LocalDate.now();
         String yesterday = (today.minusDays(2)).format(DateTimeFormatter.ISO_DATE);

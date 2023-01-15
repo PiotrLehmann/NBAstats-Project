@@ -13,10 +13,26 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.CompoundBorder;
 
+
+/**
+ * HighestScoresPanel class acts like JPanel, and it is used to create
+ * HighestScoresPanel and displaying bar chart on it
+ */
 public class HighestScoresPanel extends JPanel
 {
+    /**
+     * panel for bars on chart
+     */
     private final JPanel barPanel;
+
+    /**
+     * panel for labels on chart
+     */
     private final JPanel labelPanel;
+
+    /**
+     * list of Bar type objects
+     */
     private final List<Bar> bars = new ArrayList<>();
 
     public HighestScoresPanel()
@@ -38,12 +54,21 @@ public class HighestScoresPanel extends JPanel
         add(labelPanel, BorderLayout.PAGE_END);
     }
 
+    /**
+     * adds column to a chart
+     * @param label contains text for label for specific Bar object
+     * @param value contains value for displaying above Bar Object
+     * @param color contains color of the Bar object
+     */
     public void addHistogramColumn(String label, int value, Color color)
     {
         Bar bar = new Bar(label, value, color);
         bars.add(bar);
     }
 
+    /**
+     * responsible for histogram layout
+     */
     public void layoutHistogram()
     {
         barPanel.removeAll();
@@ -77,6 +102,12 @@ public class HighestScoresPanel extends JPanel
     private record Bar(String label, int value, Color color) {
     }
 
+    /**
+     * creates shadow behind the bars
+     * @param color contains color name of shadow
+     * @param width contains width value of shadow
+     * @param height contains height value of shadow
+     */
     private record ColorIcon(Color color, int width, int height) implements Icon {
 
         public int getIconWidth() {

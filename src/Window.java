@@ -13,15 +13,30 @@ import java.awt.GridLayout;
 import java.awt.Color;
 
 
-
+/**
+ * Window class is treated like JFrame and contains CardPanel,
+ * which is using panelContainer with all Panels in application:
+ * HomeScreen, HighestScoresPanel, PlayerStatsPanel, TeamStatsPanel and TodayScoresPanel
+ */
 public class Window extends JFrame {
 
-    JPanel panelContainer;
-    private static final Logger logger = Logger.getLogger(Window.class);
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    /**
+     * container for all Panels working in CardLayout
+     */
+    private final JPanel panelContainer;
 
+    /**
+     * logger for Window class
+     */
+    private static final Logger logger = Logger.getLogger(Window.class);
+
+    /**
+     * Window class constructor, basically creates window and
+     * attaches Panels to it
+     */
     public Window() {
 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenHeight = (int) screenSize.getHeight();
         int screenWidth = (int) screenSize.getWidth();
         int windowHeight = 600;
@@ -132,7 +147,6 @@ public class Window extends JFrame {
             logger.trace("Clicked Today Scores - currently on Highest Scores");
         });
 
-        // Creating the window
         this.setJMenuBar(menuBar);
         this.add(panelContainer);
         this.setSize(windowWidth, windowHeight);
@@ -143,6 +157,9 @@ public class Window extends JFrame {
         logger.trace("Window created successfully");
     }
 
+    /**
+     * Thread for creating and running HomeScreen
+     */
     private class HomeScreenThread extends  Thread {
         @Override
         public void run() {
@@ -155,6 +172,9 @@ public class Window extends JFrame {
         }
     }
 
+    /**
+     * Thread for creating and running TeamsRankingPanel
+     */
     private class TeamsRankingThread extends  Thread {
         @Override
         public void run() {
@@ -166,6 +186,9 @@ public class Window extends JFrame {
         }
     }
 
+    /**
+     * Thread for creating and running PlayersRankingPanel
+     */
     private class PlayersRankingThread extends  Thread {
         @Override
         public void run() {
@@ -177,6 +200,9 @@ public class Window extends JFrame {
         }
     }
 
+    /**
+     * Thread for creating and running TodayScoresPanel
+     */
     private class TodayScoresThread extends  Thread {
         @Override
         public void run() {
@@ -188,6 +214,9 @@ public class Window extends JFrame {
         }
     }
 
+    /**
+     * Thread for creating and running HighestScoresPanel
+     */
     private class HighestScoresThread extends  Thread {
         @Override
         public void run() {
