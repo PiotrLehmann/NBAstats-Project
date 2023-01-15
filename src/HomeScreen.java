@@ -1,13 +1,9 @@
-import org.apache.log4j.Logger;
-import java.time.LocalDate;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
+
+
 
 public class HomeScreen {
 
@@ -19,8 +15,7 @@ public class HomeScreen {
     public String date;
 
     public HomeScreen() {
-
-        // Logo for the left side of HomeScreen
+        
         ImageIcon logo = new ImageIcon("images/LOGO500GIT.png");
         logoLabel = new JLabel(logo);
 
