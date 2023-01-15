@@ -22,14 +22,11 @@ public class Main {
             logger.debug("Exception thrown while checking the internet availability");
         }
 
-
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new Window();
             }
         });
-
-
     }
 }
