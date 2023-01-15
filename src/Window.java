@@ -1,6 +1,17 @@
 import org.apache.log4j.Logger;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.CardLayout;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Color;
+
 
 
 public class Window extends JFrame {
@@ -11,23 +22,19 @@ public class Window extends JFrame {
 
     public Window() {
 
-        // local variables
         int screenHeight = (int) screenSize.getHeight();
         int screenWidth = (int) screenSize.getWidth();
         int windowHeight = 600;
         int windowWidth = 800;
         logger.info("Screen resolution & window size set");
 
-        // Images
         ImageIcon logo = new ImageIcon("images/LOGO500GIT.png");
 
-        // Adjusting window appearance
         this.setTitle("NBA Stats");
         this.setIconImage(logo.getImage());
-        // Creating a CardLayout
+
         CardLayout cl = new CardLayout();
 
-        // Panel Container
         panelContainer = new JPanel();
         panelContainer.setLayout(cl);
 
@@ -93,11 +100,8 @@ public class Window extends JFrame {
         todayScoresItem.setEnabled(true);
         highestScoresItem.setEnabled(true);
 
-
-
         cl.show(panelContainer, "Home");
 
-        // action listeners to all menu items
         backHomeItem.addActionListener(e -> {
             cl.show(panelContainer, "Home");
             logger.trace("You are on Home");
@@ -196,6 +200,7 @@ public class Window extends JFrame {
             highestScoresPanel.addHistogramColumn(highestScoresData.data[0][0], Integer.parseInt(highestScoresData.data[0][1]), Color.GREEN);
             highestScoresPanel.layoutHistogram();
             panelContainer.add(highestScoresPanel, "Highest Scores");
+            logger.info("Highest Scores Panel - successfully created");
         }
     }
 
