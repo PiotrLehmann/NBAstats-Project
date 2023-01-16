@@ -222,11 +222,11 @@ public class Window extends JFrame {
         public void run() {
             HighestScoresPanel highestScoresPanel = new HighestScoresPanel();
             HighestScoresData highestScoresData = new HighestScoresData();
-            highestScoresPanel.addHistogramColumn(highestScoresData.data[4][0], Integer.parseInt(highestScoresData.data[4][1]), Color.DARK_GRAY);
-            highestScoresPanel.addHistogramColumn(highestScoresData.data[3][0], Integer.parseInt(highestScoresData.data[3][1]), Color.RED);
-            highestScoresPanel.addHistogramColumn(highestScoresData.data[2][0], Integer.parseInt(highestScoresData.data[2][1]), Color.ORANGE);
-            highestScoresPanel.addHistogramColumn(highestScoresData.data[1][0], Integer.parseInt(highestScoresData.data[1][1]), Color.YELLOW);
-            highestScoresPanel.addHistogramColumn(highestScoresData.data[0][0], Integer.parseInt(highestScoresData.data[0][1]), Color.GREEN);
+            highestScoresPanel.addHistogramColumn(highestScoresData.data[4][0], Integer.parseInt(highestScoresData.data[4][1]), new Color(229,228,226));
+            highestScoresPanel.addHistogramColumn(highestScoresData.data[3][0], Integer.parseInt(highestScoresData.data[3][1]), new Color(211,211,211));
+            highestScoresPanel.addHistogramColumn(highestScoresData.data[2][0], Integer.parseInt(highestScoresData.data[2][1]), new Color(169,169,169));
+            highestScoresPanel.addHistogramColumn(highestScoresData.data[1][0], Integer.parseInt(highestScoresData.data[1][1]), new Color(113,121,126));
+            highestScoresPanel.addHistogramColumn(highestScoresData.data[0][0], Integer.parseInt(highestScoresData.data[0][1]), new Color(54,69,79));
             highestScoresPanel.layoutHistogram();
             panelContainer.add(highestScoresPanel, "Highest Scores");
             logger.info("Highest Scores Panel - successfully created");
